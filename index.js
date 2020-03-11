@@ -20,6 +20,7 @@ const limiter = rateLimit({
 // Init middleware
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.static('public'))
 app.use(limiter);
 app.use(cors(corsOptions))
 app.use(function(req, res, next) {
@@ -29,7 +30,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (req, res) => {
-    res.send('Hello World')
+    res.sendFile('./public/index.html')
 })
 
 // @Route       GET
